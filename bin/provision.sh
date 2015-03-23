@@ -32,17 +32,17 @@ while getopts ":h:s:p:i:u:c:" opt; do
   esac
 done
 
-SERVICE_ID=$(cat config/aws-rds-service-broker.json  | jq -r ".catalog.services[] | select(.name==\"$SERVICE_NAME\") | .id")
+SERVICE_ID=$(cat config/bare-bone-service-broker.json  | jq -r ".catalog.services[] | select(.name==\"$SERVICE_NAME\") | .id")
 if [ -z "$SERVICE_NAME" -o -z "$SERVICE_ID" ] ; then
 	echo "$USAGE" >&2
-	echo ERROR: missing or incorrect service name. choose of one $(cat config/aws-rds-service-broker.json  | jq -r '.catalog.services[] | .name') >&2
+	echo ERROR: missing or incorrect service name. choose of one $(cat config/bare-bone-service-broker.json  | jq -r '.catalog.services[] | .name') >&2
 	exit 1;
 fi
 
 
-PLAN_ID=$(cat config/aws-rds-service-broker.json  | jq -r ".catalog.services[] | select(.name==\"$SERVICE_NAME\") | .plans[] | select(.name==\"$PLAN_NAME\") | .id")
+PLAN_ID=$(cat config/bare-bone-service-broker.json  | jq -r ".catalog.services[] | select(.name==\"$SERVICE_NAME\") | .plans[] | select(.name==\"$PLAN_NAME\") | .id")
 if [ -z "$PLAN_NAME" -o  -z "$PLAN_ID" ] ; then
-	echo ERROR: missing or incorrect plan name. choose of one $(cat config/aws-rds-service-broker.json  | jq -r ".catalog.services[] | select(.name==\"$SERVICE_NAME\") | .plans[] | .name") >&2
+	echo ERROR: missing or incorrect plan name. choose of one $(cat config/bare-bone-service-broker.json  | jq -r ".catalog.services[] | select(.name==\"$SERVICE_NAME\") | .plans[] | .name") >&2
 	exit 1;
 fi
 

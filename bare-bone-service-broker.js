@@ -98,7 +98,6 @@ server.get('/v2/service_instances', function(request, response, next) {
 
 function apiVersionChecker(version) {
     var header = 'x-broker-api-version';
-    console.log(version);
     return function(request, response, next) {
         if (request.headers[header]) {
             var pattern = new RegExp('^' + version.major + '\\.\\d+$');
