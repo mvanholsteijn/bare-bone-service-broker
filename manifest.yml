@@ -1,0 +1,13 @@
+applications:
+- name: bare-bone-service-broker
+  mem: 256M
+  disk: 1024M
+  instances: 1
+  env:
+    SERVICE_BROKER_USERNAME: demouser
+    SERVICE_BROKER_PASSWORD: demopassword
+  stackato:
+    ignores:
+    - .git
+    - bin
+    - node_modules
